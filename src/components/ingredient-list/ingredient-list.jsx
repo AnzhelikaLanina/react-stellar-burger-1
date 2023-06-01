@@ -25,7 +25,7 @@ const IngredientList = ({data, name, openIngredientDetails}) =>{
 }
 
 IngredientList.propTypes = {
-    data: PropTypes.arrayOf(ingredientPropType),
+    data: PropTypes.arrayOf(ingredientPropType).isRequired,
     name: PropTypes.string.isRequired,
     openIngredientDetails: PropTypes.func.isRequired
 }

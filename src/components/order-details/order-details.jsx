@@ -2,7 +2,6 @@ import styles from "./order-details.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import image from '../../images/done.svg';
 import PropTypes from "prop-types";
-import {ingredientPropType} from "../../utils/prop-types";
 
 const OrderDetails = ({ orderNumber, closeModal }) => {
     return (
@@ -22,7 +21,7 @@ const OrderDetails = ({ orderNumber, closeModal }) => {
 }
 
 OrderDetails.propTypes = {
-    ingredient: PropTypes.arrayOf(ingredientPropType),
+    orderNumber: PropTypes.string.isRequired,
     closeModal: PropTypes.func.isRequired
 }
 

@@ -5,11 +5,16 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import PropTypes from "prop-types";
 
 const modalRoot = document.getElementById("react-modals");
-const Modal = ({ overlayClick, btnEscClick, children }) => {
+const Modal = ({ closeModal, children }) => {
+
     React.useEffect(() => {
-        document.addEventListener("keydown", btnEscClick);
+        const handleEsc = (evt) => {
+            evt.key === 'Escape' && closeModal();
+        }
+
+        document.addEventListener("keydown", handleEsc);
         return () => {
-            document.removeEventListener("keydown", btnEscClick);
+            document.removeEventListener("keydown", handleEsc);
         };
     }, []);
 
@@ -19,7 +24,7 @@ const Modal = ({ overlayClick, btnEscClick, children }) => {
                     <div className={styles.container}>
                         {children}
                     </div>
-                    <ModalOverlay overlayClick={overlayClick} />
+                    <ModalOverlay closeModal={closeModal} />
                 </section>
         </>,
         modalRoot
@@ -27,9 +32,8 @@ const Modal = ({ overlayClick, btnEscClick, children }) => {
 }
 
 Modal.propTypes = {
-    children: PropTypes.object,
-    overlayClick: PropTypes.func.isRequired,
-    btnEscClick: PropTypes.func.isRequired
+    children: PropTypes.node.isRequired,
+    closeModal: PropTypes.func.isRequired,
 }
 
 export default Modal;

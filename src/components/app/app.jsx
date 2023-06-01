@@ -16,16 +16,17 @@ const App = () => {
     });
 
     const [orderDetails, setOrderDetails] = React.useState({ isOpened: false });
-    const [ingredientDetails, setIngredientDetails] = React.useState({ isOpened: false, ingredient: null })
-
+    const [ingredientDetails, setIngredientDetails] = React.useState({ isOpened: false, ingredient: null });
 
     React.useEffect(() => {
         const getBurgerIngredientsData = async () => {
             try {
                 setState({...state, isLoading: true, hasError: false});
                 const res = await fetch(serverData);
-                const data = await res.json();
-                setState({...state, dataIngredients: data.data});
+                if (res.ok){
+                    const data = await res.json();
+                    setState({...state, dataIngredients: data.data});
+                }
             } catch (err) {
                 console.log("Ошибка");
                 setState({...state, isLoading: false, hasError: true});
@@ -47,10 +48,6 @@ const App = () => {
         setIngredientDetails({ ...ingredientDetails, isOpened: false });
     }
 
-    const handleEsc = (evt) => {
-        evt.key === 'Escape' && closeModal();
-    }
-
   return (
     <div className={styles.app}>
         <AppHeader />
@@ -60,15 +57,13 @@ const App = () => {
         </main>
         {orderDetails.isOpened &&
             <Modal
-                overlayClick={closeModal}
-                btnEscClick={handleEsc}>
+                closeModal={closeModal}>
                 <OrderDetails orderNumber={`034536`} closeModal={closeModal} />
             </Modal>}
 
         {ingredientDetails.isOpened &&
             <Modal
-                overlayClick={closeModal}
-                btnEscClick={handleEsc}>
+                closeModal={closeModal}>
                 <IngredientDetails ingredient={ingredientDetails.ingredient} closeModal={closeModal} />
             </Modal>}
     </div>

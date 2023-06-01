@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import {ingredientPropType} from "../../utils/prop-types";
 
 const BurgerIngredients = ({data, openIngredientDetails}) =>{
-    const [current, setCurrent] = React.useState('one');
+    const [current, setCurrent] = React.useState('bun');
 
     const buns = data.filter((element) => element.type === "bun");
     const mains = data.filter((element) => element.type === "main");
@@ -16,9 +16,9 @@ const BurgerIngredients = ({data, openIngredientDetails}) =>{
         <section className={styles.section}>
             <h1 className="text text_type_main-large">Соберите бургер</h1>
             <div className={styles.tabs}>
-                <Tab value="one" active={current === 'one'} onClick={setCurrent} >Булки</Tab>
-                <Tab value="two" active={current === 'two'} onClick={setCurrent} >Соусы</Tab>
-                <Tab value="three" active={current === 'three'} onClick={setCurrent} >Начинки</Tab>
+                <Tab value="bun" active={current === 'bun'} onClick={setCurrent} >Булки</Tab>
+                <Tab value="main" active={current === 'main'} onClick={setCurrent} >Соусы</Tab>
+                <Tab value="sauce" active={current === 'sauce'} onClick={setCurrent} >Начинки</Tab>
             </div>
             <ul className={`custom-scroll ${styles.subsections}`}>
                 <IngredientList name={'Булки'} data={buns} openIngredientDetails={openIngredientDetails} />
@@ -30,7 +30,7 @@ const BurgerIngredients = ({data, openIngredientDetails}) =>{
 }
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(ingredientPropType),
+    data: PropTypes.arrayOf(ingredientPropType).isRequired,
     openIngredientDetails: PropTypes.func.isRequired
 }
 

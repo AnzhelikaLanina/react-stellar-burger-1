@@ -60,7 +60,7 @@ const BurgerConstructor = ({data, openOrderDetails}) => {
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(ingredientPropType),
+    data: PropTypes.arrayOf(ingredientPropType).isRequired,
     openOrderDetails: PropTypes.func.isRequired
 }
 

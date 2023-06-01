@@ -1,8 +1,9 @@
 import styles from "./ingredient-details.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import {ingredientPropType} from "../../utils/prop-types";
 
-const IngredientDetails = ({ closeModal, ingredient }) => {
+const IngredientDetails = ({ ingredient, closeModal }) => {
     const { image_large, name, calories, carbohydrates, fat, proteins } = ingredient;
     return (
         <div className={styles.main}>
@@ -31,7 +32,7 @@ const IngredientDetails = ({ closeModal, ingredient }) => {
 }
 
 IngredientDetails.propTypes = {
-    ingredient: PropTypes.object.isRequired,
+    ingredient: ingredientPropType.isRequired,
     closeModal: PropTypes.func.isRequired
 }
 export default IngredientDetails;
