@@ -1,0 +1,1 @@
+export const serverData = 'https://norma.nomoreparties.space/api/ingredients ';
