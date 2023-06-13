@@ -3,9 +3,10 @@ import styles from "./ingredient.module.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-const Ingredient = ({ingredientDetails, openIngredientDetails}) =>{
+const Ingredient = ({ingredientDetails, openModal, id}) =>{
+
     return (
-        <li className={styles.element} onClick={() => openIngredientDetails(ingredientDetails)}>
+        <li className={styles.element} onClick={(e) => openModal(e.currentTarget.id)} id={id} >
             <Counter count={1} size="default" extraClass="m-1"/>
             <img src={ingredientDetails.image} alt={ingredientDetails.name}/>
             <div className={styles.price}>
@@ -19,7 +20,8 @@ const Ingredient = ({ingredientDetails, openIngredientDetails}) =>{
 
 Ingredient.propTypes = {
     ingredientDetails: PropTypes.object.isRequired,
-    openIngredientDetails: PropTypes.func.isRequired
+    id: PropTypes.string.isRequired,
+    openModal: PropTypes.func.isRequired
 }
 
 export default Ingredient;

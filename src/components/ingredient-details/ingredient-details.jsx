@@ -5,6 +5,7 @@ import {ingredientPropType} from "../../utils/prop-types";
 
 const IngredientDetails = ({ ingredient, closeModal }) => {
     const { image_large, name, calories, carbohydrates, fat, proteins } = ingredient;
+
     return (
         <div className={styles.main}>
             <div className={styles.block}>

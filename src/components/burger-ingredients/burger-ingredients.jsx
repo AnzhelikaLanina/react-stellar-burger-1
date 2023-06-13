@@ -3,14 +3,15 @@ import styles from "./burger-ingredients.module.css";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientList from "../ingredient-list/ingredient-list";
 import PropTypes from "prop-types";
-import {ingredientPropType} from "../../utils/prop-types";
+import {BurgerIngredientContext} from "../services/burgerConstructorContext";
 
-const BurgerIngredients = ({data, openIngredientDetails}) =>{
-    const [current, setCurrent] = React.useState('bun');
+const BurgerIngredients = ({openModal}) =>{
+    const [current, setCurrent] = React.useState("bun");
+    const { ingredients } = React.useContext(BurgerIngredientContext);
 
-    const buns = data.filter((element) => element.type === "bun");
-    const mains = data.filter((element) => element.type === "main");
-    const sauces = data.filter((element) => element.type === "sauce");
+    const buns = ingredients.filter((element) => element.type === "bun");
+    const mains = ingredients.filter((element) => element.type === "main");
+    const sauces = ingredients.filter((element) => element.type === "sauce");
 
     return (
         <section className={styles.section}>
@@ -21,17 +22,16 @@ const BurgerIngredients = ({data, openIngredientDetails}) =>{
                 <Tab value="sauce" active={current === 'sauce'} onClick={setCurrent} >Начинки</Tab>
             </div>
             <ul className={`custom-scroll ${styles.subsections}`}>
-                <IngredientList name={'Булки'} data={buns} openIngredientDetails={openIngredientDetails} />
-                <IngredientList name={"Соусы"} data={sauces} openIngredientDetails={openIngredientDetails}  />
-                <IngredientList name={"Начинки"} data={mains} openIngredientDetails={openIngredientDetails}  />
+                <IngredientList name={'Булки'} ingredients={buns} openModal={openModal} />
+                <IngredientList name={"Соусы"} ingredients={sauces} openModal={openModal}  />
+                <IngredientList name={"Начинки"} ingredients={mains} openModal={openModal}  />
             </ul>
         </section>
     )
 }
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(ingredientPropType).isRequired,
-    openIngredientDetails: PropTypes.func.isRequired
+    openModal: PropTypes.func.isRequired,
 }
 
 export default BurgerIngredients;

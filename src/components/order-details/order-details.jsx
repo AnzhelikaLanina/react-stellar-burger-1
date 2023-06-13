@@ -21,7 +21,7 @@ const OrderDetails = ({ orderNumber, closeModal }) => {
 }
 
 OrderDetails.propTypes = {
-    orderNumber: PropTypes.string.isRequired,
+    orderNumber: PropTypes.number.isRequired,
     closeModal: PropTypes.func.isRequired
 }
 
