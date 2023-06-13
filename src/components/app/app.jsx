@@ -6,7 +6,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import { BurgerIngredientContext} from '../services/burgerConstructorContext';
+import { BurgerIngredientContext} from '../../services/burgerConstructorContext';
 import {getIngredients, postOrder} from "../../utils/burger-api";
 
 const App = () => {

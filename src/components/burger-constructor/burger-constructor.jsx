@@ -2,7 +2,7 @@ import React,  { useContext, useReducer } from "react";
 import {ConstructorElement, Button, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.css';
 import PropTypes from "prop-types";
-import { BurgerIngredientContext} from '../services/burgerConstructorContext';
+import { BurgerIngredientContext} from '../../services/burgerConstructorContext';
 
 const initialState = { totalPrice: 0 };
 

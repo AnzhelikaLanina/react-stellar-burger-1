@@ -3,7 +3,7 @@ import styles from "./burger-ingredients.module.css";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientList from "../ingredient-list/ingredient-list";
 import PropTypes from "prop-types";
-import {BurgerIngredientContext} from "../services/burgerConstructorContext";
+import {BurgerIngredientContext} from "../../services/burgerConstructorContext";
 
 const BurgerIngredients = ({openModal}) =>{
     const [current, setCurrent] = React.useState("bun");
