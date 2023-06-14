@@ -1,8 +1,10 @@
 import React,  { useContext, useReducer } from "react";
 import {ConstructorElement, Button, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.css';
-import PropTypes from "prop-types";
 import { BurgerIngredientContext} from '../../services/burgerConstructorContext';
+import {postOrder} from "../../utils/burger-api";
+import Modal from "../modal/modal";
+import OrderDetails from "../order-details/order-details";
 
 const initialState = { totalPrice: 0 };
 
@@ -17,14 +19,22 @@ const reducer = (state, action) => {
     }
 }
 
-const BurgerConstructor = ({ makeOrder }) => {
+const BurgerConstructor = () => {
+    const [orderNumber, setOrderNumber] = React.useState(null);
     const { ingredients } = useContext( BurgerIngredientContext);
     const [state, dispatch] = useReducer(reducer,initialState, undefined);
 
     const buns = ingredients.find(element => element.type === 'bun');
     const otherIngredients = ingredients.filter(element => element.type !== 'bun');
-    const totalPrice = buns && otherIngredients.map((element) => element.price).reduce((sum, price) => sum + price, 0) + buns.price * 2;
+    const totalPrice = buns && otherIngredients.reduce((sum, element) => sum + element.price, 0) + buns.price * 2;
 
+    const makeOrder = (data) => {
+        postOrder(data)
+            .then((res) => {
+                setOrderNumber(res.order.number);
+            })
+            .catch((err) => console.log(err));
+    }
 
     React.useEffect(() => {
         if (ingredients) {
@@ -38,7 +48,12 @@ const BurgerConstructor = ({ makeOrder }) => {
         makeOrder(ingredients);
     }
 
+    const closeModal = () => {
+        setOrderNumber(null);
+    };
+
     return(
+        <>
         <section className={styles.main}>
             <div className={styles.container}>
                 {buns &&
@@ -88,12 +103,13 @@ const BurgerConstructor = ({ makeOrder }) => {
                 </Button>
             </div>
         </section>
+            {orderNumber &&
+                <Modal
+                    closeModal={closeModal}>
+                    <OrderDetails orderNumber={orderNumber} closeModal={closeModal} />
+                </Modal>}
+        </>
     )
 }
-
-BurgerConstructor.propTypes = {
-    makeOrder: PropTypes.func.isRequired,
-}
-
 
 export default BurgerConstructor;
