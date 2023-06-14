@@ -3,9 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import PropTypes from "prop-types";
-
-const modalRoot = document.getElementById("react-modals");
-const Modal = ({ closeModal, children }) => {
+import {modalRoot} from '../../utils/constants';
+const Modal = ({ children, closeModal }) => {
 
     React.useEffect(() => {
         const handleEsc = (evt) => {
@@ -16,7 +15,7 @@ const Modal = ({ closeModal, children }) => {
         return () => {
             document.removeEventListener("keydown", handleEsc);
         };
-    }, []);
+    }, [closeModal]);
 
     return  ReactDOM.createPortal (
         <>
