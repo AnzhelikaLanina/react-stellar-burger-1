@@ -37,13 +37,6 @@
     justify-content: flex-end;
 }
 
-.card {
-    display: flex;
-    flex-direction: row;
-    gap:12.5px;
-    align-items: center;
-}
-
 .lockIngredient {
     display: flex;
     flex-direction: column;

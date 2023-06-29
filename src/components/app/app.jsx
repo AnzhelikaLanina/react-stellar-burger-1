@@ -3,28 +3,26 @@ import styles from "./app.module.css";
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { BurgerIngredientContext} from '../../services/burgerConstructorContext';
-import {getIngredients} from "../../utils/burger-api";
+import {getIngredients} from "../../services/actions/ingredient";
+import { useDispatch } from 'react-redux';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const App = () => {
-    const [ingredients, setIngredients] = React.useState([]);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
-        getIngredients()
-            .then((res) => {
-                setIngredients(res.data);
-            })
-            .catch((err) => console.log(err));
-    }, [])
+        dispatch(getIngredients())
+    }, [dispatch])
 
   return (
     <div className={styles.app}>
         <AppHeader />
         <main className={styles.main}>
-            <BurgerIngredientContext.Provider value={{ ingredients, setIngredients }}>
+            <DndProvider backend={HTML5Backend}>
                 <BurgerIngredients />
                 <BurgerConstructor />
-            </BurgerIngredientContext.Provider>
+            </DndProvider>
         </main>
     </div>
   );

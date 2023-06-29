@@ -2,8 +2,11 @@ import styles from "./order-details.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import image from '../../images/done.svg';
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-const OrderDetails = ({ orderNumber, closeModal }) => {
+const OrderDetails = ({ closeModal }) => {
+    const { orderNumber } = useSelector(store => store.order);
+
     return (
         <div className={styles.main}>
             <div className={styles.block}>
@@ -21,7 +24,6 @@ const OrderDetails = ({ orderNumber, closeModal }) => {
 }
 
 OrderDetails.propTypes = {
-    orderNumber: PropTypes.number.isRequired,
     closeModal: PropTypes.func.isRequired
 }
 
