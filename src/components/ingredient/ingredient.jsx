@@ -18,7 +18,7 @@ const Ingredient = ({ingredient, onClick}) =>{
         }),
     });
 
-    const count = ingredientsBurgerConstructor?.filter((item) => item._id === ingredientsBurgerConstructor._id).length;
+    const count = ingredientsBurgerConstructor?.filter((item) => item._id === ingredient._id).length;
 
     return (
         <li className={styles.element} onClick={onClick} ref={dragRef} >

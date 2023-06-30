@@ -47,9 +47,9 @@ const BurgerConstructor = () => {
         dispatch(removeIngredient(uuid));
     }
 
-    const moveBurgerIngredient = React.useCallback((dragIndex, hoverIndex) => {
+    const moveBurgerIngredient = (dragIndex, hoverIndex) => {
         dispatch(moveIngredient(dragIndex, hoverIndex));
-    }, [dispatch]);
+    };
 
     const totalPrice = React.useMemo(
         () =>
@@ -59,10 +59,16 @@ const BurgerConstructor = () => {
         [ingredientsBurgerConstructor]
     );
 
-    const getOrderDetails = React.useCallback(() => {
-        const burgerIngredients = ingredientsBurgerConstructor.map(((item) => item._id));
-        dispatch(getOrderNumber(burgerIngredients));
-    }, [dispatch, ingredientsBurgerConstructor]);
+    const getOrderDetails = () => {
+        const data = {
+                ingredients: [
+                    bun._id,
+                    ...otherIngredients.map((ingredient) => ingredient._id),
+                    bun._id
+                ]
+            };
+        dispatch(getOrderNumber(data.ingredients));
+    };
 
     const closeModalOrder = () => {
         dispatch(closeModalOrderDetails());
