@@ -4,7 +4,7 @@ export const checkResponse = (res) => {
     return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-export const getIngredients = () => {
+export const getIngredientsData = () => {
     return fetch(`${NORMA_API}/ingredients`, {
         method: "GET",
         headers: {
