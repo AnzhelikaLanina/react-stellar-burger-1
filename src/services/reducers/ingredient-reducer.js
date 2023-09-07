@@ -19,7 +19,7 @@ export const ingredientReducer = (state = ingredientsInitialState, action) => {
             return {
                 ...state,
                 ingredientsRequest: true,
-                ingredientsError: false,
+                ingredientsError: false
             };
         }
         case GET_INGREDIENTS_SUCCESS: {
@@ -33,7 +33,7 @@ export const ingredientReducer = (state = ingredientsInitialState, action) => {
             return {
                 ...state,
                 ingredientsRequest: false,
-                ingredientsError: true,
+                ingredientsError: true
             };
         }
         case OPEN_MODAL_INGREDIENT_DETAILS: {

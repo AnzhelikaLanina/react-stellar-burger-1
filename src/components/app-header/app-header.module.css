@@ -17,7 +17,7 @@
 }
 
 
-.links {
+.items {
     margin: 0;
     padding: 0;
     display: flex;
@@ -25,21 +25,41 @@
     align-items: flex-start;
     justify-self: left;
     gap: 8px;
+    list-style: none;
 }
 
-.linkRight {
+.itemRight {
     margin: 0;
     display: flex;
     flex-direction: row;
     padding: 16px 20px;
-    gap: 8px;
     justify-self: right;
+    text-decoration: none;
+    color: var(--text-inactive-color);
+    cursor: default;
 }
 
-.link {
+.item {
     margin: 0;
     display: flex;
     flex-direction: row;
     padding: 16px 20px;
-    gap: 8px;
+    color: var(--text-inactive-color);
+    text-decoration: none;
+    cursor: default;
+}
+
+.active {
+    color: #f2f2f3;
+    cursor: default;
+    text-decoration: none;
+}
+
+.noActive {
+    cursor: pointer;
+}
+
+.icon {
+    padding: 0 8px 0 0;
+
 }

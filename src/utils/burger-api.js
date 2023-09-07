@@ -1,8 +1,5 @@
 import {NORMA_API} from "./constants";
-
-export const checkResponse = (res) => {
-    return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
-};
+import {checkResponse} from "./utils";
 
 export const getIngredientsData = () => {
     return fetch(`${NORMA_API}/ingredients`, {

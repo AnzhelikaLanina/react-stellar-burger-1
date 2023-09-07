@@ -92,7 +92,7 @@ const BurgerConstructor = () => {
                         </div>
                         : (!orderError || (!bun && ingredientsBurgerConstructor.length > 0)) &&
                         <div>
-                            <p className="text text_type_main-default">Выберите булку</p>
+                            <p className="text text_type_main-medium">Выберите булку и другие ингредиенты</p>
                         </div>
                     }
                     <div className={`custom-scroll ${styles.box}`} >
@@ -119,10 +119,7 @@ const BurgerConstructor = () => {
                                     thumbnail={bun.image}
                                 />
                         </div>
-                        : (!orderError || (!bun && ingredientsBurgerConstructor.length > 0)) &&
-                        <div >
-                            <p className="text text_type_main-default">Выберите булку</p>
-                        </div>
+                        : (!orderError || (!bun && ingredientsBurgerConstructor.length > 0))
                     }
             </div>
             <div className={styles.element}>
