@@ -1,12 +1,11 @@
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from "react";
 import styles from "../page.module.css";
-import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {login} from "../../services/actions/auth";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../services/actions/auth";
 
 const LoginPage = () => {
-
     const dispatch = useDispatch();
     const [form, setForm] = React.useState({ email: "", password: "" });
 
@@ -16,7 +15,7 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(form.email, form.password));
+        dispatch(login(form));
     };
 
     return (

@@ -1,14 +1,13 @@
-import {EmailInput, PasswordInput, Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
+import { EmailInput, PasswordInput, Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from "react";
 import styles from "../page.module.css";
-import {Link, Navigate, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {register} from "../../services/actions/auth";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../services/actions/auth";
 
 const RegistrationPage = () => {
-
     const dispatch = useDispatch();
-    const [form, setForm] = React.useState({ email: "", password: "", name: "" });
+    const [form, setForm] = React.useState({ name: "", email: "", password: "" });
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,17 +15,8 @@ const RegistrationPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(register(form.email, form.name));
+        dispatch(register(form));
     };
-
-    const { isAuthChecked } = useSelector(store => store.auth);
-    const { state } = useLocation();
-
-    if (isAuthChecked) {
-        return (
-            <Navigate to={state?.from || "/"} />
-        );
-    }
 
     return (
         <div className={styles.page}>

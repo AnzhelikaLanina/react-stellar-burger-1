@@ -1,5 +1,5 @@
 import styles from "./ingredient-details.module.css";
-import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import IngredientDetailsMain from "../ingredient-details-main/ingredient-details-main";
 

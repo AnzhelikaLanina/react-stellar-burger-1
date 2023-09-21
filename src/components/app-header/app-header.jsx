@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import React from "react";
 
 const AppHeader = () => {
+
     return (
         <header className={styles.header}>
             <div className={styles.block}>
@@ -15,7 +16,8 @@ const AppHeader = () => {
                         >
                             {({isActive}) => (
                                 <>
-                                    <div className={styles.icon}><BurgerIcon type={isActive ? 'primary' : 'secondary'} />
+                                    <div
+                                        className={styles.icon}><BurgerIcon type={isActive ? 'primary' : 'secondary'} />
                                     </div>
                                     <div
                                         className={`text text_type_main-default + ${isActive ? styles.active : styles.noActive}`}>Конструктор
@@ -31,7 +33,8 @@ const AppHeader = () => {
                         >
                             {({isActive}) => (
                                 <>
-                                    <div className={styles.icon}><ListIcon type={isActive ? 'primary' : 'secondary'}/>
+                                    <div
+                                        className={styles.icon}><ListIcon type={isActive ? 'primary' : 'secondary'}/>
                                     </div>
                                     <div
                                         className={`text text_type_main-default + ${isActive ? styles.active : styles.noActive}`}>Лента заказов
@@ -49,7 +52,8 @@ const AppHeader = () => {
                     >
                         {({isActive}) => (
                             <>
-                                <div className={styles.icon}><ProfileIcon type={isActive ? 'primary' : 'secondary'}/>
+                                <div
+                                    className={styles.icon}><ProfileIcon type={isActive ? 'primary' : 'secondary'}/>
                                 </div>
                                 <div
                                     className={`text text_type_main-default + ${isActive ? styles.active : styles.noActive}`}>Личный кабинет

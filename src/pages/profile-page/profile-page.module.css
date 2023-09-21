@@ -5,16 +5,3 @@
     flex-direction: row;
     gap: 60px;
 }
-
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-}

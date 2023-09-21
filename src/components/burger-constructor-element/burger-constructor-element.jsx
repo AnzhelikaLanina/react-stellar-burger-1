@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from "./burger-constructor-element.module.css";
-import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDrag, useDrop} from "react-dnd";
+import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDrag, useDrop } from "react-dnd";
 import PropTypes from "prop-types";
-import {ingredientPropType} from "../../utils/prop-types";
+import { ingredientPropType } from "../../utils/prop-types";
 
-const BurgerConstructorElement = ({ingredient, index, onMove, onDelete}) => {
+const BurgerConstructorElement = ({ ingredient, index, onMove, onDelete }) => {
     const { name, price, image, uuid } = ingredient;
     const ref = React.useRef(null);
 

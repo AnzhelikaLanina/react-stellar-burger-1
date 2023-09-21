@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import PropTypes from "prop-types";
-import {modalRoot} from '../../utils/constants';
+import { modalRoot } from '../../utils/constants';
 const Modal = ({ children, closeModal }) => {
 
     React.useEffect(() => {

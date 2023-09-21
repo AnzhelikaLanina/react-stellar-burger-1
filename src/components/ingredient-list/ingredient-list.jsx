@@ -1,16 +1,10 @@
 import React from "react";
 import styles from "./ingredient-list.module.css";
 import Ingredient from "../ingredient/ingredient";
-import {ingredientPropType} from "../../utils/prop-types";
+import { ingredientPropType } from "../../utils/prop-types";
 import PropTypes from "prop-types";
-import {useDispatch} from "react-redux";
-import {openModalIngredientDetails} from "../../services/actions/ingredient";
 
-const IngredientList = React.forwardRef(({ingredients, name}, ref) =>{
-    const dispatch = useDispatch();
-    const openModal = (ingredientSelected) => {
-        dispatch(openModalIngredientDetails(ingredientSelected));
-    };
+const IngredientList = React.forwardRef(({ ingredients, name, onClick }, ref) =>{
 
     return (
         <li className={styles.subsection} ref={ref}>
@@ -21,7 +15,7 @@ const IngredientList = React.forwardRef(({ingredients, name}, ref) =>{
                         <Ingredient
                             key={element._id}
                             ingredient={element}
-                            onClick={() => openModal(element)}
+                            onClick={() => onClick(element)}
                         />
                     )})
                 }

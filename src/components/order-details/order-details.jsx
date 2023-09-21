@@ -1,8 +1,8 @@
 import styles from "./order-details.module.css";
-import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import image from '../../images/done.svg';
 import PropTypes from "prop-types";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const OrderDetails = ({ closeModal }) => {
     const { orderNumber } = useSelector(store => store.order);

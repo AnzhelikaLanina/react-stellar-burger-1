@@ -1,17 +1,19 @@
 import React from "react";
-import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.css';
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import {useDispatch, useSelector} from "react-redux";
-import {closeModalOrderDetails, getOrderNumber} from "../../services/actions/order";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModalOrderDetails, getOrderNumber } from "../../services/actions/order";
 import uuid from 'react-uuid';
-import {addIngredient, moveIngredient, removeIngredient} from "../../services/actions/constructor";
+import { addIngredient, moveIngredient, removeIngredient } from "../../services/actions/constructor";
 import { useDrop } from "react-dnd";
 import BurgerConstructorElement from "../burger-constructor-element/burger-constructor-element";
+import { useNavigate } from "react-router-dom";
 
 const BurgerConstructor = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { ingredientsBurgerConstructor } = useSelector(store => store.constructor);
     const { orderNumber, orderError  } = useSelector(store => store.order);
 
@@ -58,16 +60,22 @@ const BurgerConstructor = () => {
                 : 0,
         [ingredientsBurgerConstructor]
     );
+    const { user } = useSelector((state) => state.auth);
 
     const getOrderDetails = () => {
-        const data = {
+        if (user) {
+            const data = {
                 ingredients: [
                     bun._id,
                     ...otherIngredients.map((ingredient) => ingredient._id),
                     bun._id
                 ]
             };
-        dispatch(getOrderNumber(data.ingredients));
+            dispatch(getOrderNumber(data.ingredients));
+        } else {
+            navigate('/login');
+        }
+
     };
 
     const closeModalOrder = () => {

@@ -2,15 +2,13 @@ import React from "react";
 import styles from "./burger-ingredients.module.css";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientList from "../ingredient-list/ingredient-list";
-import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/ingredient-details";
 import { useSelector, useDispatch } from 'react-redux';
-import {closeModalIngredientDetails} from "../../services/actions/ingredient";
+import { openModalIngredientDetails } from "../../services/actions/ingredient";
 
 const BurgerIngredients = () =>{
     const [currentTab, setCurrentTab] = React.useState("bun");
+    const { ingredients } = useSelector(store => store.ingredients);
     const dispatch = useDispatch();
-    const { ingredients, ingredientSelected } = useSelector(store => store.ingredients);
 
     const buns = React.useMemo(
         () =>
@@ -29,9 +27,6 @@ const BurgerIngredients = () =>{
             ingredients.filter((element) => element.type === "sauce"),
         [ingredients]
     );
-    const closeModalIngredient = () => {
-        dispatch(closeModalIngredientDetails());
-    };
 
     const bunRef = React.useRef();
     const sauceRef = React.useRef();
@@ -76,8 +71,11 @@ const BurgerIngredients = () =>{
         }
     }
 
+    const  openModal = (ingredientSelected) => {
+        dispatch(openModalIngredientDetails(ingredientSelected));
+    };
+
     return (
-        <>
         <section className={styles.section}>
             <h1 className="text text_type_main-large">Соберите бургер</h1>
             <div className={styles.tabs}>
@@ -86,17 +84,11 @@ const BurgerIngredients = () =>{
                 <Tab value="main" active={currentTab === 'main'} onClick={clickActiveTab} >Начинки</Tab>
             </div>
             <ul className={`custom-scroll ${styles.subsections}`} onScroll={handleChangeTab}>
-                <IngredientList name={'Булки'} ingredients={buns} ref={bunRef} />
-                <IngredientList name={"Соусы"} ingredients={sauces} ref={sauceRef} />
-                <IngredientList name={"Начинки"} ingredients={mains} ref={mainRef} />
+                <IngredientList name={'Булки'} ingredients={buns} ref={bunRef} onClick={openModal} />
+                <IngredientList name={"Соусы"} ingredients={sauces} ref={sauceRef} onClick={openModal} />
+                <IngredientList name={"Начинки"} ingredients={mains} ref={mainRef} onClick={openModal} />
             </ul>
         </section>
-            {ingredientSelected &&
-                <Modal
-                    closeModal={closeModalIngredient}>
-                    <IngredientDetails closeModal={closeModalIngredient} />
-                </Modal>}
-            </>
     )
 }
 

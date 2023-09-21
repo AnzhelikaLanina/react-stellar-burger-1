@@ -1,15 +1,12 @@
 import styles from "./profile-nav.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import {useDispatch} from "react-redux";
-import {logout} from "../../services/actions/auth";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../services/actions/auth";
 const ProfileNav = () => {
-
     const dispatch = useDispatch();
-
     const onLogout = () => {
-        dispatch(logout());
+        dispatch(logout(localStorage.getItem('refreshToken')));
     }
 
     return (
